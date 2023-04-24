@@ -1,0 +1,110 @@
+name: Autograding Tests
+'on':
+- push
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: TestCambio
+      id: testcambio
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: TestCambio
+        setup-command: ''
+        command: go test ./... -run ^TestCambio$
+        timeout: 10
+        max-score: 1
+    - name: TestDados
+      id: testdados
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: TestDados
+        setup-command: ''
+        command: go test ./... -run ^TestDados$
+        timeout: 10
+        max-score: 1
+    - name: TestMochila5
+      id: testmochila5
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: TestMochila5
+        setup-command: ''
+        command: go test ./... -run ^TestMochila5$
+        timeout: 10
+        max-score: 1
+    - name: TestMochila6
+      id: testmochila6
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: TestMochila6
+        setup-command: ''
+        command: go test ./... -run ^TestMochila6$
+        timeout: 10
+        max-score: 1
+    - name: TestMochila6Bis
+      id: testmochila6bis
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: TestMochila6Bis
+        setup-command: ''
+        command: go test ./... -run ^TestMochila6Bis$
+        timeout: 10
+        max-score: 1
+    - name: TestNReinas
+      id: testnreinas
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: TestNReinas
+        setup-command: ''
+        command: go test ./... -run ^TestNReinas$
+        timeout: 10
+        max-score: 1
+    - name: TestSudokuUnicaSolucion
+      id: testsudokuunicasolucion
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: TestSudokuUnicaSolucion
+        setup-command: ''
+        command: go test ./... -run ^TestSudokuUnicaSolucion$
+        timeout: 10
+        max-score: 1
+    - name: TestSudokuMultipleSolucion
+      id: testsudokumultiplesolucion
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: TestSudokuMultipleSolucion
+        setup-command: ''
+        command: go test ./... -run ^TestSudokuMultipleSolucion$
+        timeout: 10
+        max-score: 1
+    - name: TestSudokuMilesSoluciones
+      id: testsudokumilessoluciones
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: TestSudokuMilesSoluciones
+        setup-command: ''
+        command: go test ./... -run ^TestSudokuMilesSoluciones$
+        timeout: 10
+        max-score: 1
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        TESTCAMBIO_RESULTS: ${{steps.testcambio.outputs.result}}
+        TESTDADOS_RESULTS: ${{steps.testdados.outputs.result}}
+        TESTMOCHILA5_RESULTS: ${{steps.testmochila5.outputs.result}}
+        TESTMOCHILA6_RESULTS: ${{steps.testmochila6.outputs.result}}
+        TESTMOCHILA6BIS_RESULTS: ${{steps.testmochila6bis.outputs.result}}
+        TESTNREINAS_RESULTS: ${{steps.testnreinas.outputs.result}}
+        TESTSUDOKUUNICASOLUCION_RESULTS: ${{steps.testsudokuunicasolucion.outputs.result}}
+        TESTSUDOKUMULTIPLESOLUCION_RESULTS: ${{steps.testsudokumultiplesolucion.outputs.result}}
+        TESTSUDOKUMILESSOLUCIONES_RESULTS: ${{steps.testsudokumilessoluciones.outputs.result}}
+      with:
+        runners: testcambio,testdados,testmochila5,testmochila6,testmochila6bis,testnreinas,testsudokuunicasolucion,testsudokumultiplesolucion,testsudokumilessoluciones
