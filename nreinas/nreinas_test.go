@@ -22,8 +22,10 @@ func esSolucion(solucion []int) bool {
 func TestNReinas(t *testing.T) {
 	n := 12
 
-	solucion := NReinas(n)
+	soluciones := NReinas(n)
 
-	assert.Len(t, solucion, n)
-	assert.True(t, esSolucion(solucion))
+	for _, sol := range soluciones {
+		assert.Len(t, sol, n)
+		assert.True(t, esSolucion(sol))
+	}
 }

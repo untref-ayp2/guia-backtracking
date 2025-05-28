@@ -17,4 +17,8 @@ func TestCambio(t *testing.T) {
 		sum += coin
 	}
 	require.Equal(t, cantidad, sum)
+	require.Len(t, solucion, 3) // 9 * 3 = 27
+	for _, coin := range solucion {
+		require.Equal(t, 9, coin)
+	}
 }

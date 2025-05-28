@@ -2,7 +2,7 @@
 
 ## Ejercicios
 
-Usando los conceptos de _backtracking_ resuelva los siguientes ejercicios.
+Usando la técnica de _backtracking_ resuelva los siguientes ejercicios.
 
 1. [N Reinas](./nreinas): Modificar la implementación de las N Reinas para que devuelva un arreglo de **todas** las soluciones encontradas. También se deberán actualizar los tests.
 
