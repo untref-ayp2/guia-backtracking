@@ -30,6 +30,10 @@ $$\begin{align*}
    go run ./sudoku/visual/main.go
    ```
 
-5. [Problema de la mochila (Knapsack)](./mochila/mochila5.go): Este es un problema [NP completo](https://es.wikipedia.org/wiki/NP-completo). Consiste en un problema de optimización combinatoria, donde se espera poder llenar una "mochila" con un peso limitado, por una cantidad de objetos, cada uno con un peso y valor específico, máximizando el valor total almacenado. Los objetos no se pueden fraccionar.
+5. [Problema de la mochila (Knapsack)](./mochila/mochila5.go)
+
+    > Dado un conjunto de objetos, cada uno con un peso y un valor, el objetivo es determinar que objetos se deben incluir en una mochila de capacidad limitada para maximizar el valor total. Es decir la mochila tiene una capacidad máxima de peso que no debe ser excedida.
+
+    Este es un problema [NP completo](https://es.wikipedia.org/wiki/NP-completo). Consiste en un problema de optimización combinatoria, donde se espera poder llenar una "mochila" con un peso limitado, por una cantidad de objetos, cada uno con un peso y valor específico, máximizando el valor total almacenado. Los objetos no se pueden fraccionar. 
 
 6. [Problema de la mochila modificado](./mochila/mochila6.go): Modificar el problema anterior para que devuelva ademas la lista de objetos a incluir en la mochila.
