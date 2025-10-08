@@ -1,79 +1,35 @@
-# Guía: Algoritmos Ávidos
+# Guía:  Backtracking
 
 ## Ejercicios
 
-En la carpeta `/ejercicios` encontrarás los esqueletos de la implementación para las siguientes consignas.
+Usando los conceptos de _backtracking_ resuelva los siguientes ejercicios.
 
-### Algoritmos Ávidos
+1. [N Reinas](./nreinas): Modificar la implementación de las N Reinas para que devuelva un arreglo de **todas** las soluciones encontradas. También se deberán actualizar los tests.
 
-#### 1. Selector de actividades recursivo
+2. [Cambio de monedas](./cambio): Implementar una solución para el problema del cambio de monedas usando backtracking. El problema consiste en entregar la menor cantidad de monedas posibles para un monto dado.
 
-Reescribir la función que resuelve el problema de seleccionar actividades en forma recursiva.
+3. [Problema de los dados](./dados): Se tienen $n$ dados de $k$ caras cada uno, se desea saber la cantidad de formas de obtener una suma de $x$ puntos al lanzar los $n$ dados.
 
-#### 2. Minimización del tiempo en el sistema
+   Ejemplo: Si tenemos $n=3$ dados de $k=6$ caras y queremos obtener el valor $x=7$ la solución es:
 
-Dadas $n$ tareas (cada una de las cuales tarda un tiempo $t_i$ en ejecutarse) y un procesador que ejecuta dichas tareas, se debe diseñar una función que nos devuelva una planificación de las tareas (un orden para ejecutarlas), tal que minimice el tiempo medio de finalización (promedio de los tiempos en que finalizan las tareas).
+$$\begin{align*}
+[(1, 1, 5), (1, 2, 4), (1, 3, 3), (1, 4, 2), (1, 5, 1), \\
+(2, 1, 4), (2, 2, 3), (2, 3, 2), (2, 4, 1), (3, 1, 3), \\
+(3, 2, 2), (3, 3, 1), (4, 1, 2), (4, 2, 1), (5, 1, 1)]
+\end{align*}$$
 
-##### Ejemplo
+   En total 15 variantes distintas.
 
-Dado:
+4. [Sudoku](./sudoku): El sudoku es un rompecabezas de lógica que consiste en llenar una cuadrícula de 9x9 con números del 1 al 9, de tal manera que cada fila, cada columna y cada una de las nueve subcuadrículas de 3x3 contengan todos los dígitos del 1 al 9 sin repetir. En general se inicia de un tablero parcialmente lleno.
 
-$$t = [4, 10, 2, 20]$$
+   Se pide implementar la función `possible` (Factible) del TDA `Sudoku`.
 
-Si las ejecuto en el orden,
+   Para ejecutar el solucionador visual se debe ejecutar:
 
-$$t_1,\; t_2,\; t_3,\; t_4$$
+   ```console
+   go run ./sudoku/visual/main.go
+   ```
 
-entonces cada una de las tareas se ejecutarán en los siguientes intervamos de tiempo:
+5. [Problema de la mochila (Knapsack)](./mochila/mochila5.go): Este es un problema [NP completo](https://es.wikipedia.org/wiki/NP-completo). Consiste en un problema de optimización combinatoria, donde se espera poder llenar una "mochila" con un peso limitado, por una cantidad de objetos, cada uno con un peso y valor específico, máximizando el valor total almacenado. Los objetos no se pueden fraccionar.
 
-\begin{align*}
-t_1 &= [0, 4) \\
-t_2 &= [4, 14) \\
-t_3 &= [14, 16) \\
-t_4 &= [16, 36)
-\end{align*}
-
-y el promedio de los tiempos de finalización es:
-
-$$(4 + 14 + 16 + 36) \div 4 = 17,5$$
-
-En cambio si se ejecutan:
-
-$$t_3,\; t_1,\; t_2,\; t_4$$
-
-entonces el cada una de las tareas se ejecutarán en los siguientes intervalos de tiempo:
-
-\begin{align*}
-t_1 &= [2, 6) \\
-t_2 &= [6, 16) \\
-t_3 &= [0, 2) \\
-t_4 &= [16, 36)
-\end{align*}
-
-y el promedio de los tiempos de finalización es:
-
-$$(6 + 16 + 2 + 36) \div 4 = 15$$
-
-#### 3. Problema de la mochila fraccionaria
-
-Se tienen $n$ objetos (cada objeto $i$ tiene un peso y un valor); y una mochila con capacidad máxima de $W$. Se pretende encontrar la manera de cargar la mochila de forma que se maximice el valor de lo transportado y se respete su capacidad máxima. Los objetos se pueden fraccionar de tal forma de cargar solo una fracción del objeto
-
-> El paso greedy es elegir primero el elemento que tenga mayor valor por unidad de peso
-
-#### 4. Farolas públicas
-
-Hay $M$ farolas en las posiciones $y_1, \dots, y_M$ de una recta y $N$ puntos $x_1, \dots, x_N$.
-
-Cada farola tiene un radio de iluminación $r_i$, tal que la $i$-ésima farola ilumina puntos en el intervalo $[y_i - r_i, y_i + r_i]$. Se quiere encender el mínimo número de farolas tales que cada uno de los $N$ puntos $x_1, \dots, x_N$ esté iluminado por al menos una farola. Programar una función que devuelva una lista de farolas a encender.
-
-**Entrada:** Un arreglo de Farolas de tamaño $M$ (de cada farola se registra posición, radio y si está encendida) y un arreglo de enteros de tamaño $N$ que representan los puntos a iluminar
-
-**Salida:** Lista de Farolas encendidas. Si el problema no tiene solución debe devolver un error
-
-**Pre condiciones:** El arreglo de farolas y puntos está ordenado por posicion de menor a mayor.
-
-> **Pista:** Para resolver este problema, nos imaginamos los puntos y las farolas en la recta, ordenados de izquierda a derecha. Se encienden las farolas más a la derecha que puedan iluminar el punto actual y se avanza al siguiente punto.
->
-> **Paso Greedy:** Dado un punto $x$, encender la farola más a la derecha que pueda iluminarlo.
-
-#### 5. Cambio de moneda
+6. [Problema de la mochila modificado](./mochila/mochila6.go): Modificar el problema anterior para que devuelva ademas la lista de objetos a incluir en la mochila.
